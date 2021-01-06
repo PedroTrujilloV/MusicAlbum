@@ -7,8 +7,6 @@
 
 import UIKit
 
-let reuseIdentifier = "Cell"
-
 class MusicAlbumsCollectionViewController: UICollectionViewController {
     
     let numberOfItemsInSection = 23
@@ -44,7 +42,7 @@ extension MusicAlbumsCollectionViewController { // MARK: UICollectionViewDataSou
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier, for: indexPath)
         cell.backgroundColor = .purple
         return cell
     }
