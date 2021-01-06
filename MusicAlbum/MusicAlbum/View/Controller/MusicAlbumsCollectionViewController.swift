@@ -42,9 +42,14 @@ extension MusicAlbumsCollectionViewController { // MARK: UICollectionViewDataSou
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier, for: indexPath)
-        cell.backgroundColor = .purple
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier, for: indexPath) as? MusicAlbumCollectionViewCell {
+            cell.backgroundColor = .purple
+            return cell
+        } else {
+            print("Problem at dequeueReusableCell for MusicAlbumCollectionViewCell")
+        }
+        
+        return collectionView.dequeueReusableCell(withReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier, for: indexPath)
     }
     
 }
