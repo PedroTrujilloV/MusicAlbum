@@ -18,7 +18,8 @@ class MusicAlbumUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.minimumLineSpacing = MusicAlbumUICollectionViewFlowLayout.spacing
         let extraSpace = ( CGFloat(MusicAlbumUICollectionViewFlowLayout.columns) * MusicAlbumUICollectionViewFlowLayout.spacing ) + MusicAlbumUICollectionViewFlowLayout.spacing
         let sideLenght = ( frame.width - extraSpace ) / 3
-        self.itemSize = CGSize(width: sideLenght, height: sideLenght)
+        let textAreaHeight = sideLenght / 2
+        self.itemSize = CGSize(width: sideLenght, height: sideLenght + textAreaHeight)
     }
     
     required init?(coder: NSCoder) {
