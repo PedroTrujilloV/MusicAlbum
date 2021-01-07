@@ -10,6 +10,7 @@ import XCTest
 
 class MusicAlbumTests: XCTestCase {
 
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -29,5 +30,16 @@ class MusicAlbumTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testEquality(){
+        var givenAlbum = MusicAlbumModel()
+        givenAlbum.artistName = "The Thootless Chicken"
+        givenAlbum.name = "I'm the Ruster of this Corral"
+        let whenAlbumVM = MusicAlbumViewModel(model: givenAlbum)
+        //then
+        XCTAssertTrue(whenAlbumVM.name == "I'm the Ruster of this Corral")
+        XCTAssertTrue(whenAlbumVM.artistName == "The Thootless Chicken")
+    }
+    
 
 }
