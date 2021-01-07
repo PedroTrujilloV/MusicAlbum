@@ -28,8 +28,6 @@ class MusicAlbumCollectionView: UICollectionView {
     
     private func setup() {
         self.alwaysBounceVertical = true
-        self.backgroundColor = UIColor.red
-        // Register cell classes
         self.register(MusicAlbumCollectionViewCell.self, forCellWithReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier)
     }
 
