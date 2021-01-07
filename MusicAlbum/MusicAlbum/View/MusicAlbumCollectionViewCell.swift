@@ -8,12 +8,6 @@
 import UIKit
 import Combine
 
-enum LoadingState {
-    case notLoading
-    case loading
-    case loaded(UIImage)
-}
-
 class MusicAlbumCollectionViewCell: UICollectionViewCell {
     static let reuserIdentifier: String = "MusicAlbumCollectionViewCellReuserIdentifier"
     private var cancellables: Array<AnyCancellable> = []
