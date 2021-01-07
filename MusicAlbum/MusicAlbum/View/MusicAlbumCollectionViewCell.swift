@@ -152,7 +152,7 @@ class MusicAlbumCollectionViewCell: UICollectionViewCell {
                         }, receiveCompletion: { [weak self] (completion) in
                             DispatchQueue.main.async {
                                 self?.activityIndicator.stopAnimating()
-                                let margin:CGFloat = 12
+                                let margin:CGFloat = 10
                                 self?.thumbnailImageView.image = self?.thumbnailImageView.image?.withInset(UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin))
                             }
                         }, receiveCancel: { [weak self]  in
