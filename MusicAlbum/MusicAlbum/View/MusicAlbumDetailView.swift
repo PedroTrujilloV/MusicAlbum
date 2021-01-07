@@ -45,7 +45,7 @@ class MusicAlbumDetailView: UIView {
         label.text  = "No genre, release date or copyright."
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Light", size: 14)
-        label.numberOfLines = 3
+        label.numberOfLines = 4
         return label
     }()
 
@@ -134,11 +134,10 @@ class MusicAlbumDetailView: UIView {
         artistNameLabel.text = viewModel.artistName
         otherInfo.text = viewModel.otherInfo
         bind(viewModel)
-        
     }
     
     private func bind(_ viewModel: MusicAlbumViewModel) {
-        if let imgUrl = URL(string: viewModel.url ){
+        if let imgUrl = URL(string: viewModel.artworkUrl100 ){
             cancellable = ImageLoader.shared.loadImage(from: imgUrl)
                 .handleEvents( receiveCompletion: { [weak self] (completion) in
                     DispatchQueue.main.async {
