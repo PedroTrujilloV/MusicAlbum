@@ -131,6 +131,8 @@ class MusicAlbumDetailView: UIView {
     
     public func set(from viewModel:MusicAlbumViewModel) {
         albumNameLabel.text = viewModel.name
+        artistNameLabel.text = viewModel.artistName
+        otherInfo.text = viewModel.otherInfo
         bind(viewModel)
         
     }
