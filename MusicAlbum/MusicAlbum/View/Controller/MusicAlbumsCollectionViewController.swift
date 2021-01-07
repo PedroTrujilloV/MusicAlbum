@@ -52,6 +52,24 @@ extension MusicAlbumsCollectionViewController { // MARK: UICollectionViewDataSou
         return collectionView.dequeueReusableCell(withReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier, for: indexPath)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let offerVM = dataSource[indexPath.row]
+        let detailVC = MusicAlbumDetailViewController(offerVM)
+        presentDetailViewController(detailVC)
+        
+    }
+    
+    private func presentDetailViewController(_ detailVC: MusicAlbumDetailViewController) {
+       let nc = UINavigationController(rootViewController: detailVC)
+       nc.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+       nc.navigationBar.shadowImage = UIImage()
+       nc.navigationBar.isTranslucent = true
+       nc.view.backgroundColor = UIColor.clear
+       
+       self.present(nc, animated: true) {
+           //do something
+       }
+    }
 }
 
 extension MusicAlbumsCollectionViewController: StoreDelegate {
@@ -61,36 +79,3 @@ extension MusicAlbumsCollectionViewController: StoreDelegate {
     }
 }
 
-    
-extension MusicAlbumsCollectionViewController { // MARK: UICollectionViewDelegate
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
-}
