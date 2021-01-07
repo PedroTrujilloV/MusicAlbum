@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol StoreDelegate:AnyObject {
+    func storeDidLoad(dataSource:Array<MusicAlbumViewModel>)
+}
