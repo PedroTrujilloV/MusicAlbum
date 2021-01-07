@@ -10,7 +10,7 @@ import Foundation
 struct Genre: Codable {
 
     var genreId:String?
-    var name:String
+    var name:String?
     var url:String?
     
 }
