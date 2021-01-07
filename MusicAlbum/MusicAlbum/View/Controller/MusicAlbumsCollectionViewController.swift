@@ -10,7 +10,8 @@ import UIKit
 class MusicAlbumsCollectionViewController: UICollectionViewController {
     
     let numberOfItemsInSection = 23
-    
+    private var store: MusicAlbumStore?
+    private var dataSource:Array<MusicAlbumViewModel> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +19,11 @@ class MusicAlbumsCollectionViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        self.collectionView.backgroundColor = .orange
         setup()
     }
     
     private func setup(){
+        store = MusicAlbumStore(delegate: self)
         navigationItem.title = "Music Albums"
         collectionView = MusicAlbumCollectionView(frame: collectionView.frame)
     }
@@ -36,23 +37,30 @@ class MusicAlbumsCollectionViewController: UICollectionViewController {
 
 extension MusicAlbumsCollectionViewController { // MARK: UICollectionViewDataSource
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfItemsInSection
+        return dataSource.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier, for: indexPath) as? MusicAlbumCollectionViewCell {
-            cell.backgroundColor = .purple
+            let vm = dataSource[indexPath.item]
+            cell.set(from: vm)
             return cell
         } else {
             print("Problem at dequeueReusableCell for MusicAlbumCollectionViewCell")
         }
-        
         return collectionView.dequeueReusableCell(withReuseIdentifier: MusicAlbumCollectionViewCell.reuserIdentifier, for: indexPath)
     }
     
 }
+
+extension MusicAlbumsCollectionViewController: StoreDelegate {
+    func  storeDidLoad(dataSource: Array<MusicAlbumViewModel>) {
+        self.dataSource = dataSource
+        self.collectionView?.reloadData()
+    }
+}
+
     
 extension MusicAlbumsCollectionViewController { // MARK: UICollectionViewDelegate
     
