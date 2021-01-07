@@ -46,24 +46,27 @@ class MusicAlbumViewModel {
     }
     
     var genres:Array<Genre> {
-        return model.genres
+        return model.genres ?? []
     }
     
     var otherInfo:String {
         var text = ""
         var generes = ""
         
-        var i = 0
-        for genere in model.genres {
-            if let genereName = genere.name {
-                if i == model.genres.count - 1 {
-                    generes = generes + "and " + genereName + "."
-                } else {
-                    generes = generes +  genereName + ", "
+        if let genresArr = model.genres {
+            var i = 0
+            for genere in genresArr {
+                if let genereName = genere.name {
+                    if i == genresArr.count - 1 {
+                        generes = generes + "and " + genereName + "."
+                    } else {
+                        generes = generes +  genereName + ", "
+                    }
                 }
+                i += 1
             }
-            i += 1
         }
+        
         
         let releaseDate = model.releaseDate ?? "unknow"
         let copyright = model.copyright ?? "unknow"
