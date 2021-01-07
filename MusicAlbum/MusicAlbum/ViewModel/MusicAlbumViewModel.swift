@@ -8,39 +8,41 @@
 import Foundation
 
 class MusicAlbumViewModel {
+    
     private let model:MusicAlbumModel
+    
     var id:String {
-        return model.id
+        return model.id ?? ""
     }
     var artistName:String {
-        return model.artistName
+        return model.artistName ?? ""
     }
     var releaseDate:String {
-        return model.releaseDate
+        return model.releaseDate ?? ""
     }
     var name:String {
-        return model.name
+        return model.name ?? ""
     }
     var kind:String {
-        return model.kind
+        return model.kind ?? ""
     }
     var copyright:String {
-        return model.copyright
+        return model.copyright ?? ""
     }
     var artistId:String {
-        return model.artistId
+        return model.artistId ?? ""
     }
     var contentAdvisoryRating:String {
-        return model.contentAdvisoryRating
+        return model.contentAdvisoryRating ?? ""
     }
     var artistUrl:String {
-        return model.artistUrl
+        return model.artistUrl ?? ""
     }
     var artworkUrl100:String {
-        return model.artworkUrl100
+        return model.artworkUrl100 ?? ""
     }
     var url:String {
-        return model.url
+        return model.url ?? ""
     }
     
     init(model:MusicAlbumModel) {
