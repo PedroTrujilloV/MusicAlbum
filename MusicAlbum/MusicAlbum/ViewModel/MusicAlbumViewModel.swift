@@ -59,7 +59,7 @@ class MusicAlbumViewModel {
                 if i == model.genres.count - 1 {
                     generes = generes + " and " + genereName + "."
                 } else {
-                    generes = generes + ", " + genereName
+                    generes = generes +  genereName + ", "
                 }
             }
             i += 1
