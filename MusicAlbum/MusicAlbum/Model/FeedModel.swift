@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Feed : Codable {//Decodable, Hashable {
+struct Feed : Codable {
     var id:String
     var results:[MusicAlbumModel]
     

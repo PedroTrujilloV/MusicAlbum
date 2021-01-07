@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MusicAlbumModel: Codable { //Decodable, Hashable {
+struct MusicAlbumModel: Codable {
     var id:String?
     var artistName:String?
     var releaseDate:String?
