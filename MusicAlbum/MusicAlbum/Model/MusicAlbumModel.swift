@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct MusicAlbumModel: Decodable, Hashable {
-    var id:String
-    var artistName:String
-    var releaseDate:String
-    var name:String
-    var kind:String
-    var copyright:String
-    var artistId:String
-    var contentAdvisoryRating:String
-    var artistUrl:String
-    var artworkUrl100:String
-    var url:String
+struct MusicAlbumModel: Codable { //Decodable, Hashable {
+    var id:String?
+    var artistName:String?
+    var releaseDate:String?
+    var name:String?
+    var kind:String?
+    var copyright:String?
+    var artistId:String?
+    var contentAdvisoryRating:String?
+    var artistUrl:String?
+    var artworkUrl100:String?
+    var url:String?
 }
 
 
