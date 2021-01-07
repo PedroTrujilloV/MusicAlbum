@@ -11,6 +11,7 @@ import Combine
 class MusicAlbumDetailView: UIView {
     
     private var cancellable: AnyCancellable?
+    private var url:String = ""
 
     private var thumbnailImageView:UIImageView = {
         let imageV = UIImageView()
@@ -25,8 +26,8 @@ class MusicAlbumDetailView: UIView {
         let label = UILabel()
         label.text  = "No Album"
         label.textAlignment = .center
-        label.font = UIFont(name: "Roboto-Bold", size: 20)
-        label.textColor = UIColor.albumNameTextColor
+        label.font = UIFont(name: "Roboto-Bold", size: 24)
+        label.textColor = UIColor.artistNameTextColor
         label.numberOfLines = 2
         return label
     }()
@@ -36,7 +37,7 @@ class MusicAlbumDetailView: UIView {
         label.text  = "No artist"
         label.textAlignment = .left
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
-        label.textColor = UIColor.artistNameTextColor
+        label.textColor = UIColor.albumNameTextColor
         return label
     }()
     
@@ -70,6 +71,16 @@ class MusicAlbumDetailView: UIView {
         return stackView
     }()
     
+    private var iTunnesButton:UIButton = {
+        let button:UIButton = UIButton(frame: CGRect(x: 100, y: 400, width: 150, height: 40))
+        button.backgroundColor = .systemOrange
+        button.layer.cornerRadius = 10
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("iTunes store",  for: UIControl.State.normal)
+        return button
+    }()
+
+    
     private let defaultImage = UIImage(named: "a-nikelogo")
 
     init(frame: CGRect, offerViewModel:  MusicAlbumViewModel) {
@@ -87,7 +98,7 @@ class MusicAlbumDetailView: UIView {
     }
     
     private func setup(){
-
+        setupButton()
         setupStackView()
         setupStyle()
     }
@@ -103,6 +114,7 @@ class MusicAlbumDetailView: UIView {
         
         stackView.addArrangedSubview(thumbnailImageView)
         stackView.addArrangedSubview(textStackView)
+        stackView.addArrangedSubview(iTunnesButton)
         self.addSubview(stackView)
         
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -117,7 +129,7 @@ class MusicAlbumDetailView: UIView {
        
     private func setupTextConstraints(){
         albumNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width-20).isActive = true
-        albumNameLabel.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+        albumNameLabel.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
         artistNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width-30).isActive = true
         artistNameLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
         otherInfo.widthAnchor.constraint(equalToConstant: self.frame.width-25).isActive = true
@@ -131,6 +143,7 @@ class MusicAlbumDetailView: UIView {
     }
     
     public func set(from viewModel:MusicAlbumViewModel) {
+        url = viewModel.artistUrl
         albumNameLabel.text = viewModel.name
         artistNameLabel.text = viewModel.artistName
         otherInfo.text = viewModel.otherInfo
@@ -150,5 +163,16 @@ class MusicAlbumDetailView: UIView {
         }
     }
     
+    private func setupButton() {
+        iTunnesButton.widthAnchor.constraint(equalToConstant: self.frame.width-40).isActive = true
+        iTunnesButton.addTarget(self, action:#selector(self.buttonClicked), for: .touchUpInside)
+    }
+    
+    @objc func buttonClicked() {
+         print("Button Clicked")
+        if let link = URL(string: self.url) {
+          UIApplication.shared.open(link)
+        }
+    }
     
 }
