@@ -97,7 +97,7 @@ class MusicAlbumCollectionViewCell: UICollectionViewCell {
        
     private func setupStackView(){
         setupImageViewConstraints()
-        setupTextConstraint()
+        setupTextViewConstraints()
 
         stackView.addArrangedSubview(thumbnailImageView)
         stackView.addArrangedSubview(textStackView)
@@ -114,7 +114,7 @@ class MusicAlbumCollectionViewCell: UICollectionViewCell {
         thumbnailImageView.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
     }
     
-    private func setupTextConstraint(){
+    private func setupTextViewConstraints(){
         albumNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
         albumNameLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
         
@@ -136,11 +136,34 @@ class MusicAlbumCollectionViewCell: UICollectionViewCell {
 
         
     public func set(from viewModel:  MusicAlbumViewModel) {
-//        bind(viewModel)
         albumNameLabel.text = viewModel.name
         artistNameLabel.text = viewModel.artistName
+        bindImage(viewModel)
     }
     
+    private func bindImage(_ viewModel: MusicAlbumViewModel) {
+        if let imgUrl = URL(string: viewModel.artworkUrl100 ){
+            cancellables.append(
+                ImageLoader.shared.loadImage(from: imgUrl)
+                    .handleEvents(receiveSubscription: { [weak self] (subscription) in
+                            DispatchQueue.main.async {
+                                self?.activityIndicator.startAnimating()
+                            }
+                        }, receiveCompletion: { [weak self] (completion) in
+                            DispatchQueue.main.async {
+                                self?.activityIndicator.stopAnimating()
+                                let margin:CGFloat = 12
+                                self?.thumbnailImageView.image = self?.thumbnailImageView.image?.withInset(UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin))
+                            }
+                        }, receiveCancel: { [weak self]  in
+                            DispatchQueue.main.async {
+                                self?.activityIndicator.stopAnimating()
+                            }
+                    })
+                    .assign(to: \.image, on: thumbnailImageView )
+            )
+        }
+    }
     
     override func prepareForReuse() {
         thumbnailImageView.image = defaultImage
