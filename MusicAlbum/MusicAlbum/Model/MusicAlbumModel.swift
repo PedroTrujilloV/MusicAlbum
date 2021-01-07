@@ -19,7 +19,7 @@ struct MusicAlbumModel: Codable {
     var artistUrl:String?
     var artworkUrl100:String?
     var url:String?
-    var genres:[Genre]
+    var genres:[Genre]?
 }
 
 
