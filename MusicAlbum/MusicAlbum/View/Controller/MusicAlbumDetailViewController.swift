@@ -6,16 +6,12 @@
 //
 
 import UIKit
-import Combine
 
 class MusicAlbumDetailViewController: UIViewController{
     
     private var detailView: MusicAlbumDetailView?
     private var viewModel:MusicAlbumViewModel
-    private var cancellable:AnyCancellable?
-    private static let processingQueue = DispatchQueue(label: "processingQueue")
     
-//    private let heartFillImage = UIImage(systemName: "heart.fill")
     private let exitImage = UIImage(systemName: "xmark")
     
     
@@ -28,27 +24,14 @@ class MusicAlbumDetailViewController: UIViewController{
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit  {
-        self.cancel()
-    }
-    
-    private func cancel(){
-        cancellable?.cancel()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
     func setup(){
-        bind()
         setupView()
         setupButtons()
-    }
-    
-    func bind(){
-        
     }
     
     func setupButtons() {
@@ -68,11 +51,6 @@ class MusicAlbumDetailViewController: UIViewController{
         view.addSubview(self.detailView ?? UIView())
         self.view = view
     }
-    
-    @objc private func likeItAction(sender:UIBarButtonItem) {
-        // do something
-    }
-    
     
     
     @objc private func closeAction(sender:UIBarButtonItem) {
