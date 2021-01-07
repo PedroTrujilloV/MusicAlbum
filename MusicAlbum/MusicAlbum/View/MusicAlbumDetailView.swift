@@ -25,7 +25,7 @@ class MusicAlbumDetailView: UIView {
         let label = UILabel()
         label.text  = "No Album"
         label.textAlignment = .center
-        label.font = UIFont(name: "Roboto-Bold", size: 16)
+        label.font = UIFont(name: "Roboto-Bold", size: 20)
         label.textColor = UIColor.albumNameTextColor
         label.numberOfLines = 2
         return label
@@ -35,7 +35,7 @@ class MusicAlbumDetailView: UIView {
         let label = UILabel()
         label.text  = "No artist"
         label.textAlignment = .left
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
         label.textColor = UIColor.artistNameTextColor
         return label
     }()
@@ -45,7 +45,7 @@ class MusicAlbumDetailView: UIView {
         label.text  = "No genre, release date or copyright."
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Light", size: 14)
-        label.numberOfLines = 4
+        label.numberOfLines = 6
         return label
     }()
 
@@ -65,7 +65,7 @@ class MusicAlbumDetailView: UIView {
         stackView.axis  = NSLayoutConstraint.Axis.vertical
         stackView.distribution  = UIStackView.Distribution.equalSpacing
         stackView.alignment = UIStackView.Alignment.center
-        stackView.spacing   = 20.0
+        stackView.spacing   = 12.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -110,17 +110,18 @@ class MusicAlbumDetailView: UIView {
     }
     
     private func setupImageViewConstraints(){
-        thumbnailImageView.heightAnchor.constraint(equalToConstant: self.frame.width).isActive = true
-        thumbnailImageView.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
+        let proportion:CGFloat = 0.88
+        thumbnailImageView.heightAnchor.constraint(equalToConstant: self.frame.width * proportion).isActive = true
+        thumbnailImageView.widthAnchor.constraint(equalToConstant: self.frame.width * proportion).isActive = true
     }
        
     private func setupTextConstraints(){
         albumNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width-20).isActive = true
-        albumNameLabel.heightAnchor.constraint(equalToConstant: 45.0).isActive = true
+        albumNameLabel.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         artistNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width-30).isActive = true
         artistNameLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-        otherInfo.widthAnchor.constraint(equalToConstant: self.frame.width-35).isActive = true
-        otherInfo.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        otherInfo.widthAnchor.constraint(equalToConstant: self.frame.width-25).isActive = true
+        otherInfo.heightAnchor.constraint(equalToConstant: 95.0).isActive = true
     }
     
     private func setupTextStackView() {
