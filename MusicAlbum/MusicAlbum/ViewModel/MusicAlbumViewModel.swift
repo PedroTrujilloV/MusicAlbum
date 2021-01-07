@@ -68,7 +68,7 @@ class MusicAlbumViewModel {
         let releaseDate = model.releaseDate ?? "unknow"
         let copyright = model.copyright ?? "unknow"
         
-        text = "Genres: " + generes + "\n Released: " + releaseDate + "\n Copyright: " + copyright
+        text = "Genres: " + generes + "\nReleased: " + releaseDate + "\nCopyright: " + copyright
         
         return text
     }
