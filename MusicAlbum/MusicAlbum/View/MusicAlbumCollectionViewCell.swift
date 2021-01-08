@@ -52,16 +52,17 @@ class MusicAlbumCollectionViewCell: UICollectionViewCell {
     private var albumNameLabel: UILabel = {
         let label = UILabel()
         label.text  = "No Album"
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
         label.textColor = UIColor.albumNameTextColor
+        label.numberOfLines = 2
         return label
     }()
     
     private var artistNameLabel: UILabel = {
         let label = UILabel()
         label.text  = "No Artist"
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.font = UIFont(name: "AvenirNext-Regular", size: 11)
         label.textColor = UIColor.artistNameTextColor
         return label
@@ -109,10 +110,10 @@ class MusicAlbumCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupTextViewConstraints(){
-        albumNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
+        albumNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width - 6).isActive = true
         albumNameLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
         
-        artistNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
+        artistNameLabel.widthAnchor.constraint(equalToConstant: self.frame.width - 8).isActive = true
         artistNameLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
 
         textStackView.addArrangedSubview(albumNameLabel)
